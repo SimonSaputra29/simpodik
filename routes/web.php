@@ -1,11 +1,5 @@
 <?php
 
-use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\GuruController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,23 +17,17 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('halamanLogin');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('halamanLogin');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 
 // ADMIN
-Route::middleware('auth', 'role:admin')->group(function () {
-    Route::resource('admin', AdminController::class);
-    Route::resource('users', UserController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard-admin', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
+    // GURU
+    Route::resource('guru', App\Http\Controllers\GuruController::class);
+    
+    // SISWA
+    Route::resource('/siswa', App\Http\Controllers\SiswaController::class);
 });
-
-// GURU
-Route::resource('guru', GuruController::class);
-
-// SISWA
-Route::resource('/siswa', SiswaController::class);
-
-
-Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
-Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store');

@@ -68,11 +68,11 @@
         @csrf
       <div class="mb-3">
         <label for="email" class="form-label">Alamat Email</label>
-        <input type="email" class="form-control" id="email" placeholder="email@contoh.com" required>
+        <input type="email" class="form-control" id="email" name="email" placeholder="email@contoh.com" required>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Kata Sandi</label>
-        <input type="password" class="form-control" id="password" placeholder="Kata sandi" required>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Kata sandi" required>
       </div>
       <div class="d-grid">
         <button type="submit" class="btn btn-primary">Login</button>
