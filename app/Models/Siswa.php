@@ -12,10 +12,11 @@ class Siswa extends Model
     protected $table = 'siswas';
 
     protected $fillable = [
-        'username',
+        'nama_pengguna',
         'nama',
         'nis',
         'kelas',
+        'password',
     ];
 
     public function absensi()

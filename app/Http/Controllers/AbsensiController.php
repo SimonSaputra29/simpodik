@@ -10,10 +10,8 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $tanggal = date('Y-m-d');
         $siswas = Siswa::all();
-
-        return view('absensi.index', compact('siswas', 'tanggal'));
+        return view('absensi.index', compact('siswas'));
     }
 
     public function store(Request $request)
@@ -30,6 +28,6 @@ class AbsensiController extends Controller
             );
         }
 
-        return redirect()->route('absensi.index')->with('success', 'Absensi berhasil disimpan!');
+        return redirect()->route('absensi.index')->with('success', 'Absensi berhasil disimpan');
     }
 }
