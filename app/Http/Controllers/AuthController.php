@@ -15,29 +15,31 @@ class AuthController extends Controller
             return $this->redirectToDashboard();
         }
 
-        return view('auth.login', [
-            'title' =>  'Halaman Masuk'
-        ]);
+        return view('auth.login');
     }
 
-    public function login(Request $request)
+   public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email'     =>  'required|email',
-            'password'  =>  'required',
+            'email'    => 'required|email',
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
-            $user = Auth::user();
 
-            return match ($user->role) {
-                'admin' => redirect()->route('admin.index')->with('success', 'Selamat Datang Admin!'),
-                'guru' => redirect()->route('guru.index')->with('success', 'Selamat Datang guru!'),
-                default => redirect()->route('siswa.index')->with('success', 'Selamat Datang siswa!'),
-            };
+            $user = Auth::guard('web')->user();
+            if (in_array($user->role, ['Admin', 'Guru'])) {
+                return redirect()->route('admin.dashboard')->with('success', 'Selamat datang ' . ucfirst($user->role) . '!');
+            }
         }
-        return back()->withInput()->with('error', 'ada yang salah');
+
+        if (Auth::guard('siswa')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('siswa.dashboard')->with('success', 'Selamat datang Siswa!');
+        }
+
+        return back()->withInput()->with('error', 'Email atau password salah.');
     }
 
     public function redirectToDashboard()

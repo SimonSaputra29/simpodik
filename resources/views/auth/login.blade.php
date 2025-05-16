@@ -1,60 +1,85 @@
-{{-- resources/views/auth/login.blade.php --}}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #727272, #f8f8f8);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .login-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+    }
 
-@extends('layouts.app')
+    .form-control:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 0 0.25rem rgba(37, 117, 252, 0.25);
+    }
 
-@section('title', $title)
+    .btn-primary {
+      background-color: #2575fc;
+      border: none;
+    }
 
-@section('content')
-    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh">
-        <div class="card shadow-sm p-4" style="min-width: 350px;">
-            <h3 class="mb-3 text-center">{{ $title }}</h3>
+    .btn-primary:hover {
+      background-color: #1a5ed6;
+    }
 
-            {{-- Pesan error --}}
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #333;
+    }
 
-            {{-- Pesan sukses --}}
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+    .form-footer {
+      margin-top: 1rem;
+      text-align: center;
+    }
 
-            <form action="{{ route('login') }}" method="POST">
-                @csrf
+    .form-footer a {
+      color: #2575fc;
+      text-decoration: none;
+    }
 
-                {{-- Email --}}
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                        id="email" value="{{ old('email') }}" required autofocus>
-                    @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
 
-                {{-- Password --}}
-                <div class="mb-3">
-                    <label for="password" class="form-label">Kata Sandi</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                        id="password" required>
-                    @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+  <div class="login-card">
+    <div class="form-title">Masuk ke Akun Anda</div>
+    <form action="{{ route('login') }}" method="POST">
+        @csrf
+      <div class="mb-3">
+        <label for="email" class="form-label">Alamat Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="email@contoh.com" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Kata Sandi</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Kata sandi" required>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
 
-                {{-- Tombol Masuk --}}
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Masuk</button>
-                </div>
-            </form>
-
-            <div class="mt-3 text-center">
-                {{-- <a href="{{ route('register') }}">Belum punya akun? Daftar</a> --}}
-            </div>
-        </div>
-    </div>
-@endsection
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
