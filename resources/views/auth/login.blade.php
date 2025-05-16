@@ -64,7 +64,8 @@
 
   <div class="login-card">
     <div class="form-title">Masuk ke Akun Anda</div>
-    <form>
+    <form action="{{ route('login') }}" method="POST">
+        @csrf
       <div class="mb-3">
         <label for="email" class="form-label">Alamat Email</label>
         <input type="email" class="form-control" id="email" placeholder="email@contoh.com" required>
