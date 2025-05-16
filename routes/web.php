@@ -16,7 +16,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard-admin', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
     // GURU
     Route::resource('guru', App\Http\Controllers\GuruController::class);
-    
+    Route::resource('absensi', App\Http\Controllers\AbsensiController::class);
+
     // SISWA
     Route::resource('/siswa', App\Http\Controllers\SiswaController::class);
 });

@@ -27,25 +27,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
             'role' => 'Admin',
-<<<<<<< HEAD
-        ]);
-
-        User::create([
-            'name' => 'Guru',
-            'email' => 'guru@gmail.com',
-            'password' => bcrypt('guru'),
-            'role' => 'Guru',
-        ]);
-
-        Siswa::create([
-            'nama_pengguna'  => 'Siswa',
-            'nama'  => 'Siswa',
-            'nis' => 1220000,
-            'kelas' => 'XII RPL 1',
-            'password' => bcrypt('siswa'),
-
-=======
->>>>>>> 8893e6f8bbe8963cb2e34cd9b19d4e8059f745e6
         ]);
     }
 }

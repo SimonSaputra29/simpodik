@@ -11,7 +11,7 @@ class AbsensiController extends Controller
     public function index()
     {
         $siswas = Siswa::all();
-        return view('absensi.index', compact('siswas'));
+        return view('admin/absensi.index', compact('siswas'));
     }
 
     public function store(Request $request)
@@ -28,6 +28,6 @@ class AbsensiController extends Controller
             );
         }
 
-        return redirect()->route('absensi.index')->with('success', 'Absensi berhasil disimpan');
+        return redirect()->route('admin/absensi.index')->with('success', 'Absensi berhasil disimpan');
     }
 }
