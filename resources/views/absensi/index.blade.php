@@ -33,7 +33,7 @@
                         <tr>
                             <td>{{ $siswa->nama }}</td>
                             <td>{{ $siswa->nis }}</td>
-                            <td>{{ $siswa->kelas?? '-' }}</td>
+                            <td>{{ $siswa->kelas ?? '-' }}</td>
                             <td>
                                 <select name="absensi[{{ $siswa->id }}]" class="form-select" required>
                                     <option value="">-- Pilih Status --</option>
