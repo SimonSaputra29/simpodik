@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class GuruController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => 'Guru', 
+            'role' => 'Guru',
         ]);
 
         return redirect()->route('guru.index')->with('success', 'Guru berhasil ditambahkan');

@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand fw-bold text-white"
-            href="{{ Auth::check() ? (Auth::user()->role === 'admin' ? route('admin.index') : (Auth::user()->role === 'guru' ? route('guru.index') : route('siswa.index'))) : url('/') }}">
+            href="{{ Auth::check() ? (Auth::user()->role === 'Admin' ? route('admin.index') : (Auth::user()->role === 'guru' ? route('guru.index') : route('siswa.index'))) : url('/') }}">
             Absensi
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

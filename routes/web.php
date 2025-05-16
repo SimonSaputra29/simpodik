@@ -29,8 +29,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // ADMIN
-Route::middleware('auth', 'role:admin')->group(function () {
-    Route::resource('admin', AdminController::class);
+Route::middleware('auth', 'role:Admin')->group(function () {
+    Route::resource('dashboard/admin', AdminController::class);
     Route::resource('users', UserController::class);
 });
 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -25,18 +26,23 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
+            'role' => 'Admin',
         ]);
 
         User::create([
             'name' => 'Guru',
             'email' => 'guru@gmail.com',
             'password' => bcrypt('guru'),
+            'role' => 'Guru',
         ]);
 
-        User::create([
-            'name' => 'Siswa',
-            'email' => 'siswa@gmail.com',
+        Siswa::create([
+            'nama_pengguna'  => 'Siswa',
+            'nama'  => 'Siswa',
+            'nis' => 1220000,
+            'kelas' => 'XII RPL 1',
             'password' => bcrypt('siswa'),
+
         ]);
     }
 }
